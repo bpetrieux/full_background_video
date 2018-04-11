@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C2 Melbourne</title>
+    <style>
+        @font-face {
+            font-family: 'corporate_sbold';
+            src: url('../fonts/corporates-bold-webfont.eot');
+            src: url('../fonts/corporates-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/corporates-bold-webfont.woff2') format('woff2'), url('../fonts/corporates-bold-webfont.woff') format('woff'), url('../fonts/corporates-bold-webfont.ttf') format('truetype'), url('../fonts/corporates-bold-webfont.svg#corporate_sbold') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'corporate_sdemi';
+            src: url('../fonts/corporates-demi-webfont.eot');
+            src: url('../fonts/corporates-demi-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/corporates-demi-webfont.woff2') format('woff2'), url('../fonts/corporates-demi-webfont.woff') format('woff'), url('../fonts/corporates-demi-webfont.ttf') format('truetype'), url('../fonts/corporates-demi-webfont.svg#corporate_sdemi') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'corporate_sregular';
+            src: url('../fonts/corporates-regular-webfont.eot');
+            src: url('../fonts/corporates-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/corporates-regular-webfont.woff2') format('woff2'), url('../fonts/corporates-regular-webfont.woff') format('woff'), url('../fonts/corporates-regular-webfont.ttf') format('truetype'), url('../fonts/corporates-regular-webfont.svg#corporate_sregular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            font-family: corporate_sbold;
+        }
+        .video-background {
+            background: #000;
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -99;
+        }
+        .video-foreground,
+        .video-background iframe {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        #vidtop-content {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height:100%;
+        }
+        .vid-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 173px;
+            text-align: right;
+            z-index: 100;
+        }
+        .vid-info a, .vid-info a:active, .vid-info a:focus, .vid-info a:hover {
+            font-size: 18px;
+            color: #37eabc;
+        }
+        .mailchimp-signup-modal-background {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height:100%;
+            display: none;
+            z-index: 99;
+        }
+        .mailchimp-signup-modal-container {
+            width: 100%;
+            height:100%;
+            vertical-align: middle;
+            text-align: center;
+            display: table-cell;
+        }
+        .mailchimp-signup-modal-content {
+            position: relative;
+            padding: 40px;
+            display: inline-block;
+            background: rgba(255,255,255,0.9);
+        }
+        .hide {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 6px 12px;
+            background-color: black;
+        }
+        .hide a, .hide a:active, .hide a:focus, .hide a:hover {
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .button {
+            font-family: corporate_sbold;
+            font-size: 16px;
+            font-size: 16px;
+            background-color: #37eabc;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            cursor:pointer;
+        }
+        label{
+            display:block;
+            margin: 12px auto;
+        }
+        input{
+            padding: 12px 16px;
+            font-size: 16px;
+            margin:0px 36px 20px 36px;
+        }
+        @media (min-aspect-ratio: 16/9) {
+            .video-foreground {
+                height: 300%;
+                top: -100%;
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .video-foreground {
+                width: 300%;
+                left: -100%;
+            }
+        }
+        @media screen and (max-width: 640px) {
+            .vid-info {
+                width: 100px;
+            }
+            .vid-info > img {
+                max-width: 100%;
+            }
+            .vid-info a, .vid-info a:active, .vid-info a:focus, .vid-info a:hover {
+                font-size: 14px;
+                color: #37eabc;
+            }
+        }
+    </style>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-96828481-1', 'auto');
+        ga('send', 'pageview');
+        var show = function() {
+            $('.mailchimp-signup-modal-background').fadeIn().css('display', 'table');
+        }
+        var hide = function() {
+            $('.mailchimp-signup-modal-background').fadeOut();
+        }
+    </script>
+</head>
+<body>
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/q11EIEMZB_U?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=yfymQTs9VFg" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <!-- <div id="vidtop-content">
+    </div> -->
+    <div class="vid-info">
+        <img src="https://editor.c2montreal.com/wp-content/uploads/2017/04/c2melbourne_white-1.png" alt="">
+        <a href="javascript:show();">Sign up to our newsletter</a>
+    </div>
+    <div class="mailchimp-signup-modal-background">
+        <div class="mailchimp-signup-modal-container">
+            <div class="mailchimp-signup-modal-content">
+                <div id="mc_embed_signup">
+                    <div class="hide"><a href="javascript:hide();">X</a></div>
+                    <form action="//c2montreal.us9.list-manage.com/subscribe/post?u=048fb775b3cb0936ad0d33d27&amp;id=5d95dabee2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" style="z-index:1000" target="_blank" novalidate>
+                        <div id="mc_embed_signup_scroll">
+                            <div class="mc-field-group">
+                                <label for="mce-EMAIL">Email address</label>
+                                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div><br>
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_048fb775b3cb0936ad0d33d27_5d95dabee2" tabindex="-1" value="">
+                            </div>
+                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</body>
+</html>
